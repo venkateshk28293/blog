@@ -1,0 +1,32 @@
+<div id="header" style="margin-bottom:20px; margin-top:0px; height:60px; background-color: #A4A4A4; width: 100%">
+  <div style="width:100%">
+    <div style="color:black; width: 200px; "> blog</div>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </div>
+  </div>
+</div>
+<p id="notice"><%= notice %></p>
+
+<div>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</div>
+
+<div>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</div>
+<div class="post">
+  <%= image_tag(@post.image_url.to_s, height: "100px", width: "100px")  %>
+</div>
+</div>
+<%= form_for [@post, Comment.new] do |f| %>
+  <p>
+    <%= f.label :body, "New comment" %><br/>
+    <%= f.text_area :body %>
+  </p>
+  <p><%= f.submit "Add comment" %></p>
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> 
+<%= link_to 'Back', posts_path %>
+

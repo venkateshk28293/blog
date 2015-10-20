@@ -1,0 +1,38 @@
+<div id="header" style="margin-bottom:20px; margin-top:0px; height:60px; background-color: #A4A4A4; width: 100%">
+  <div style="width:100%">
+    <div style="color:black; width: 200px; "> blog</div>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </div>
+  </div>
+</div>
+<div class="container">
+  <%= form_for @post, :html => { :class => "form-horizontal" } do |f| %>
+    <div class="form-group">
+      <%= f.label :title, :class => 'control-label ' %>
+      <div class="controls">
+        <%= f.text_field :title, :class => 'input form-control' %>
+        <%= error_span(@post[:title]) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :body, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :body, :class => 'form-control' %>
+      </div>
+      <%= error_span(@post[:body]) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :image, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :image, :class => 'form-control' %>
+      </div>
+      <br>
+      <%= error_span(@post[:image]) %>
+    </div>
+
+
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              posts_path, :class => 'btn btn-default' %>
+
+  <% end %>
+</div>
